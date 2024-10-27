@@ -1,38 +1,39 @@
 import _ from 'lodash';
+
 import * as path from 'path';
 import * as fs from 'fs';
+import stringify from './utils.js';
 
-const compare = (obj1, obj2) => {
-  const result = [];
+const genDiff = (filepath1, filepath2) => {
+  const obj1 = JSON.parse(fs.readFileSync(path.resolve(filepath1)));
+  const obj2 = JSON.parse(fs.readFileSync(path.resolve(filepath2)));
   const keys1 = Object.keys(obj1);
   const keys2 = Object.keys(obj2);
   const allKeys = keys1.concat(keys2);
   const sortKey = _.sortBy(allKeys);
-  const uniqKeys = sortKey.filter((key, id) => sortKey.indexOf(key) === id);
-  const getLine = (uniqKey) => {
-    if (obj1[uniqKey] === obj2[uniqKey]) {
-      result.push(`  ${uniqKey}: ${obj1[uniqKey]} \n`);
-    } else if (!keys2.includes(uniqKey)) {
-      result.push(`- ${uniqKey}: ${obj1[uniqKey]} \n`);
-    } else if (!keys1.includes(uniqKey)) {
-      result.push(`+ ${uniqKey}: ${obj2[uniqKey]} \n`);
+  // console.log(sortKey);
+  const result = {};
+  function compare(key) {
+    if (obj1[key] === obj2[key]) {
+      const keyUnchanged = `  ${key}`;
+      result[keyUnchanged] = obj1[key];
+    } else if (!keys2.includes(key)) {
+      const keyDeleted = `- ${key}`;
+      result[keyDeleted] = obj1[key];
+    } else if (!keys1.includes(key)) {
+      const keyAdded = `+ ${key}`;
+      result[keyAdded] = obj2[key];
     } else {
-      result.push(`- ${uniqKey}: ${obj1[uniqKey]} \n`);
-      result.push(`+ ${uniqKey}: ${obj2[uniqKey]} \n`);
+      const keyChanged1 = `- ${key}`;
+      const keyChanged2 = `+ ${key}`;
+      result[keyChanged1] = obj1[key];
+      result[keyChanged2] = obj2[key];
     }
-  };
-  const result1 = uniqKeys.map(getLine);
-  result.unshift('{ \n');
-  result.push('}');
-  return result.join('');
+  }
+  sortKey.forEach(compare, {});
+  const resultLine = stringify(result);
+  return resultLine;
 };
 
-const getDiff = (filepath1, filepath2) => {
-  const obj1 = JSON.parse(fs.readFileSync(path.resolve(filepath1)));
-  const obj2 = JSON.parse(fs.readFileSync(path.resolve(filepath2)));
-  const obj3 = compare(obj1, obj2);
-  return obj3;
-};
-
-getDiff('file1.json', 'file2.json');
-export default getDiff;
+console.log(genDiff('__fixtures__/file1.json', '__fixtures__/file2.json'));
+export default genDiff;

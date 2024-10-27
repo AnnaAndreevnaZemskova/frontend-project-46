@@ -5,11 +5,21 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx jest"
   },
   "author": "Anna Zemskova",
   "license": "ISC",
   "bin": {
     "gendiff": "bin/gendiff.js"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "fs": "^0.0.1-security",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "eslint": "^9.13.0",
+    "globals": "^15.11.0"
   }
 }
