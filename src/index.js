@@ -11,7 +11,6 @@ const genDiff = (filepath1, filepath2) => {
   const keys2 = Object.keys(obj2);
   const allKeys = keys1.concat(keys2);
   const sortKey = _.sortBy(allKeys);
-  // console.log(sortKey);
   const result = {};
   function compare(key) {
     if (obj1[key] === obj2[key]) {
@@ -31,7 +30,7 @@ const genDiff = (filepath1, filepath2) => {
     }
   }
   sortKey.forEach(compare, {});
-  const resultLine = stringify(result);
+  const resultLine = stringify(result, ' ', 2);
   return resultLine;
 };
 
