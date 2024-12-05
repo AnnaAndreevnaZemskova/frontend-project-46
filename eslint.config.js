@@ -1,4 +1,4 @@
-iimport globals from 'globals';
+import globals from 'globals';
 
 import path from 'path';
 import { fileURLToPath } from 'url';
