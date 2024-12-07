@@ -1,7 +1,7 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/AnnaAndreevnaZemskova/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/AnnaAndreevnaZemskova/frontend-project-46/actions)",
+  "description": "Project Difference Calculator",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
@@ -16,6 +16,7 @@
     "commander": "^12.1.0",
     "fs": "^0.0.1-security",
     "jest-cli": "^29.7.0",
+    "js-yaml": "^4.1.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
