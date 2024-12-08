@@ -5,31 +5,31 @@ Difference calculator
 [![Maintainability](https://api.codeclimate.com/v1/badges/d2ae087d7b4328b00451/maintainability)](https://codeclimate.com/github/AnnaAndreevnaZemskova/frontend-project-46/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/d2ae087d7b4328b00451/test_coverage)](https://codeclimate.com/github/AnnaAndreevnaZemskova/frontend-project-46/test_coverage)
 
-Description:
+## Description:
 
 A difference calculator is a program that determines the difference between two data structures.
 
-Features:
+## Features:
 
 Support for different input formats: yaml, json
 Generate report in plain text, stylish and json
 
-Requirements:
+## Requirements:
 
 Node.js v18+ to run,   
 Npm package version 8.19.2 or later
 
-Deploy 
+## Deploy:
 
 Copy repository and install the dependencies.
 
-git clone https://github.com/AnnaAndreevnaZemskova/frontend-project-46
-cd frontend-project-46/
-make install
+1. git clone https://github.com/AnnaAndreevnaZemskova/frontend-project-46
+2. frontend-project-46/
+3. make install
 
-Usage example:
+## Usage example:
 
-Help:  
+## Help:  
 
  gendiff --help  
  Usage: gendiff [options] <filepath1> <filepath2>  
@@ -40,3 +40,7 @@ Help:
    -v, --version        output the current version  
    -f, --format <type>  output format (default: "stylish")  
    -h, --help           display help for command  
+
+An example of the program working with all file formats and structures:
+
+[![asciicast](https://asciinema.org/a/rT6hUpmjS4O6Ks61888hcLSlQ.svg)](https://asciinema.org/a/rT6hUpmjS4O6Ks61888hcLSlQ)
