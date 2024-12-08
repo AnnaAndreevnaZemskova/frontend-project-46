@@ -4,16 +4,20 @@ import parser from './parser.js';
 import getDiff from './getDiff.js';
 import getFormat from './formatters/index.js';
 
-const getPath = (way) => path.resolve(process.cwd(), way);
-const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
-  const absolutePath1 = getPath(filepath1);
-  const absolutePath2 = getPath(filepath2);
-  const content1 = fs.readFileSync(absolutePath1, 'utf-8');
-  const content2 = fs.readFileSync(absolutePath2, 'utf-8');
-  const obj1 = parser(content1, filepath1.split('.').reverse()[0]);
-  const obj2 = parser(content2, filepath2.split('.').reverse()[0]);
-  const differences = getFormat(getDiff(obj1, obj2), formatName);
-  return differences;
+const getPath = (pathFile) => path.resolve(process.cwd(), pathFile);
+
+const getExtension = (file) => path.extname(file).slice(1);
+
+const getData = (file) => {
+  const absolutePath1 = getPath(file);
+  const content = fs.readFileSync(absolutePath1, 'utf-8');
+  return parser(content, getExtension(file));
+};
+
+const genDiff = (file1, file2, format = 'stylish') => {
+  const data1 = getData(file1);
+  const data2 = getData(file2);
+  return getFormat(getDiff(data1, data2), format);
 };
 
 export default genDiff;
