@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "Project Difference Calculator",
   "main": "src/index.js",
-  "type": "module",
   "scripts": {
     "test": "npx jest"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnnaAndreevnaZemskova/frontend-project-46"
   },
   "author": "Anna Zemskova",
   "license": "ISC",
