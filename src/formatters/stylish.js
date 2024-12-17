@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
 const getIndent = (depth, replacer = ' ', spacesCount = 4) => replacer.repeat(spacesCount * depth - 2);
+
 const makeString = (value, depth) => {
   if (!_.isObject(value)) {
     return String(value);
@@ -12,6 +13,7 @@ const makeString = (value, depth) => {
   });
   return `{\n${result.join('\n')}\n  ${getIndent(depth)}}`;
 };
+
 const stylishFormat = (trees) => {
   const iter = (tree, depth = 1) => {
     const result = tree.map((node) => {
@@ -37,4 +39,5 @@ const stylishFormat = (trees) => {
   };
   return `{\n${iter(trees)}\n}`;
 };
+
 export default stylishFormat;
